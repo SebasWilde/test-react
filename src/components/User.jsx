@@ -25,16 +25,17 @@ const Users = (props) => {
             footer={<div><b>ant design</b> footer part</div>}
             renderItem={item => (
                 <List.Item
-                    key={item.title}
+                    key={item.username}
                     actions={[<IconText type="star-o" text="156" />, <IconText type="like-o" text="156" />, <IconText type="message" text="2" />]}
                     extra={<img width={272} alt="logo" src="https://gw.alipayobjects.com/zos/rmsportal/mqaQswcyDLcXyDKnZfES.png" />}
                 >
                     <List.Item.Meta
-                        avatar={<Avatar src={item.avatar} />}
-                        title={<a href={item.href}>{item.title}</a>}
-                        description={item.description}
+                        avatar={<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />}
+                        title={item.username}
+                        description={item.email}
                     />
-                    {item.content}
+                {item.profile.age?<p>Age: {item.profile.age}</p>:null}
+                {item.profile.sex?<p>Sex: {item.profile.sex==="M"?"Man":"Womam"}</p>:null}
                 </List.Item>
             )}
         />

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Icon, Input, Button,} from 'antd';
+import { Form, Icon, Input, Button, } from 'antd';
 import { Mutation } from 'react-apollo'
 import gql from 'graphql-tag'
 import { AUTH_TOKEN } from '../constants'
@@ -66,22 +66,24 @@ class NormalLoginForm extends Component {
               </Button>
               )}
             </Mutation>
-
-            Or
-            <NavLink to="/">
-              Sign up
-            </NavLink>
+          </Form.Item>
+          <Form.Item>
+            Or <NavLink to="/signup/">Sign up</NavLink>
           </Form.Item>
         </Form>
       </div>
     );
   }
   _confirm = async data => {
-    const { token } = data.tokenAuth
-    this._saveUserData(token)
-    this.props.history.push(`/`)
+    this.props.form.validateFields((err, values) => {
+      if (!err) {
+        const { token } = data.tokenAuth
+        this._saveUserData(token)
+        this.props.history.push(`/`);
+      }
+    });
   }
-  
+
   _saveUserData = token => {
     localStorage.setItem(AUTH_TOKEN, token)
   }

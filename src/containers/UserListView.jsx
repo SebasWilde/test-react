@@ -1,7 +1,20 @@
 import React from 'react'
-
+import { Query } from 'react-apollo'
+import gql from 'graphql-tag'
 import Users from '../components/User';
 
+const FEED_QUERY = gql`
+{
+    users{
+        username
+        email
+        profile {
+            age
+            sex
+        }
+    }
+  }
+`
 const listData = [];
 for (let i = 0; i < 23; i++) {
     listData.push({
@@ -16,7 +29,16 @@ for (let i = 0; i < 23; i++) {
 class UserList extends React.Component {
     render(){
         return (
-            <Users data={listData} />
+            <Query query={FEED_QUERY}>
+                {({ loading, error, data }) => {
+                    if (loading) return <div>Fetching</div>
+                    if (error) return <div>Error</div>
+                    const usersToRender = data.users
+                    return (
+                        <Users data={usersToRender} />
+                    )
+                }}
+            </Query>
         )
     }
 }
