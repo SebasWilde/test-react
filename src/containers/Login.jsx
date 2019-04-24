@@ -79,7 +79,7 @@ class NormalLoginForm extends Component {
       if (!err) {
         const { token } = data.tokenAuth
         this._saveUserData(token)
-        this.props.history.push(`/`);
+        this.props.history.push(`/userList/`);
       }
     });
   }

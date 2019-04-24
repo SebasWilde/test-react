@@ -10,7 +10,7 @@ import Signup from './containers/Signup';
 import { AUTH_TOKEN } from './constants'
 const BaseRouter = () => (
     <div>
-        <Route exact path='/' render={() => AUTH_TOKEN?<Redirect to='/login/' />:<Redirect to='/userList/' />} />
+        <Route exact path='/' render={() => AUTH_TOKEN?<Redirect to='/userList/' />:<Redirect to='/login/' />} />
         <Route exact path='/list/' component={ LinkList } />
         <Route exact path='/userList/' component={ UserList } />
         <Route exact path='/createLink/' component={CreateLink} />
